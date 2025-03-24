@@ -1,10 +1,9 @@
-article{
-    margin: 0;
+.shopping-cart-container{
+    margin: 100px auto;
     padding: 0;
     color: #454444;
-    margin-top: 150px;
     width: 100%;
-    min-height: 100vh;
+    min-height: 120vh;
     animation: fadeBottom 1s ease-in-out;
 }
 @keyframes fadeBottom{

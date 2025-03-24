@@ -1,9 +1,11 @@
-import React, { useState } from 'react'
-import '../Styles/ShippingCart.css'
+import React, { useContext, useState } from 'react'
+import '../../Styles/ShippingCart.css'
 import { FaCheckSquare, FaTruck, FaMoneyCheck, FaTrash } from 'react-icons/fa'
 import axios from 'axios';
+import { BookContext } from '../../App';
 
-const ShippingCart = ({ cart, setCart, price, handleRemove }) => {
+const ShippingCart = () => {
+  const { cart, setCart, price, handleRemove } = useContext(BookContext);
 
   const initialUserDetails = {
     name: '',
@@ -94,7 +96,7 @@ const ShippingCart = ({ cart, setCart, price, handleRemove }) => {
           <ul>
             {
               cart.length > 0 ? (cart.map((orderedBook) => (
-                <li key={orderedBook.book_id}> <span className='title'>{orderedBook.title}</span><br /> <span className='qty'> Quantity: {orderedBook.amount}</span> <span className='price'>Price: {orderedBook.price}</span> <i className='fa fa-trash' onClick={() => { handleRemove(orderedBook.book_id) }}><FaTrash /></i> </li>
+                <li key={orderedBook.bookId}> <span className='title'>{orderedBook.bookTitle}</span><br /> <span className='qty'> Quantity: {orderedBook.amount}</span> <span className='price'>Price: {orderedBook.price}</span> <i className='fa fa-trash' onClick={() => { handleRemove(orderedBook.bookId) }}><FaTrash /></i> </li>
               ))
               ) : (
                 <p className='order-empty'>Your Cart is Empty</p>

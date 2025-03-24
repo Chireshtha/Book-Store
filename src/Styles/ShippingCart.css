@@ -2,9 +2,8 @@
     width: 100%;
     height: fit-content;
     color: #fff;
-    margin-top: 120px;
     padding-top: 1px;
-    background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(../Images/background.avif);   
+    background: linear-gradient(90deg, rgba(216, 49, 7, 0.3), rgba(219, 212, 6, 0.3), rgba(62, 214, 6, 0.3), rgba(10, 223, 230, 0.3), rgba(8, 34, 232, 0.3), rgba(159, 5, 225, 0.3), rgba(216, 10, 192, 0.3)), url(../Images/BookStore.jpg);   
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -16,7 +15,7 @@
     margin: 70px auto;
     height: fit-content;
     padding: 50px;
-    background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3));
+    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6));
     animation: fade 1.3s ease-in-out;
 }
 @keyframes fade{

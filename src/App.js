@@ -1,39 +1,55 @@
 import './App.css';
-import Header from './Components/Header';
-import BookDetails from './Components/BookDetails';
-import ShoppingCart from './Components/ShoppingCart';
-import Home from './Components/Home';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { useEffect, useState } from 'react';
-import Footer from './Components/Footer';
-import ShippingCart from './Components/ShippingCart';
-import axios from 'axios';
+import { createContext, useEffect, useState } from 'react';
+import Header from './Components/Pages/Header';
+import Home from './Components/Pages/Home';
+import BookDetails from './Components/Pages/BookDetails';
+import BooksDetails from './Components/API Data/Books';
+import ShoppingCart from './Components/Pages/ShoppingCart';
+import Footer from './Components/Pages/Footer';
+import ShippingCart from './Components/Pages/ShippingCart';
+import Blog from './Components/Pages/Blog';
+import Aboutus from './Components/Pages/Aboutus';
+import Contact from './Components/Pages/Contact';
 
+export const BookContext = createContext();
+ 
 function App() {
 
   const [cart, setCart] = useState([]);
   const [warning, setWarning] = useState(false);
   const [price, setPrice] = useState(0);
   const [books, setBooks] = useState([]);
+  
+  
+  
 
-  const fetchAvailableBooks = async ()=>{
-    try{
-      const response = await axios.get("http://127.0.0.1:5000/Books_Details");
-      const availableBooks = response.data.filter(book => book.is_available);
-      setBooks(availableBooks)
-      console.log("Available book loaded", availableBooks)
-    }
-    catch(error){
-      console.log({"message":"Failed to load available books", error})
-    }
-  }
-  useEffect(()=>{
-    fetchAvailableBooks();
-  },[])
+ 
+//API from backend process
+  // const fetchAvailableBooks = async () => {
+  //   try {
+  //     const response = await axios.get("http://127.0.0.1:5000/Books_Details");
+  //     const availableBooks = response.data.filter(book => book.is_available);
+  //     setBooks(availableBooks)
+  //     console.log("Available book loaded", availableBooks)
+  //   }
+  //   catch (error) {
+  //     console.log({ "message": "Failed to load available books", error })
+  //   }
+  // }
+
+  // useEffect(() => {
+  //   fetchAvailableBooks();
+  // }, [])
+
+  //API from frontend
+  useEffect(() => {
+    setBooks(BooksDetails);
+  }, [])
 
   //Extracting Book Details
-  const UniqueList = books.map((currentBook) => {
-    console.log(currentBook.title)
+  const Books = books.map((currentBook) => {
     return currentBook;
   })
 
@@ -51,7 +67,8 @@ function App() {
 
   //handle AddtoCart Details
   const handleAddtoCart = (book) => {
-    if (!cart.some((cartItem) => cartItem.book_id === book.book_id)) {
+    const IsBookInCart = !cart.some((cartItem) => cartItem.bookId === book.bookId)
+    if (IsBookInCart) {
       setCart((prevCart) => [...prevCart, book]);
       setWarning(false)
     }
@@ -64,27 +81,28 @@ function App() {
   };
 
   //Removing AddtoCart Items
-  const handleRemove = (book_id) => {
+  const handleRemove = (bookId) => {
     setCart(cart.filter(item =>
-      item.book_id !== book_id
+      item.bookId !== bookId
     ))
   }
 
-
-
-
   return (
+    <BookContext.Provider value={{cart, setCart, handleAddtoCart, warning, books, Books ,price, handleRemove}}>
     <BrowserRouter>
-      <Header size={cart.length} warning={warning} />
-
+      <Header size={cart.length} />
       <Routes>
-        <Route path='/' element={<Home handleAddtoCart={handleAddtoCart} books = {books} />} />
-        <Route path='/BookDetails/:book_id' element={<BookDetails Books={UniqueList} handleAddtoCart={handleAddtoCart} />} />
-        <Route path='/ShoppingCart' element={<ShoppingCart cart={cart} setCart={setCart} price = {price} handleRemove = {handleRemove} />} />
-        <Route path='/ShippingCart' element={<ShippingCart cart = {cart} setCart={setCart} price = {price} handleRemove= {handleRemove}/>}  />
+        <Route path='/' element={<Home />} />
+        <Route path='/BookDetails/:bookId' element={<BookDetails  />} />
+        <Route path='/ShoppingCart' element={<ShoppingCart />} />
+        <Route path='/blog' element={<Blog />} />
+        <Route path='/contact-us' element={<Contact />} />
+        <Route path='/about-us' element={<Aboutus />} />
+        <Route path='/ShippingCart' element={<ShippingCart />} />
       </Routes>
       <Footer />
     </BrowserRouter>
+    </BookContext.Provider>
   );
 }
 

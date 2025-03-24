@@ -1,17 +1,7 @@
-*{
-  margin: 0;
-  padding: 0;
+:root{
+  --navbar-height:116px
 }
-.alert {
-  background-color: red;
-  color: #fff;
-  border-radius: 10px;
-  cursor: pointer;
-  font-size: 15px;
-  font-family: Helvetica;
-  z-index: 1;
-  position:fixed;
-  margin-top: -35px;
-  margin-left: 1100px;
-  opacity: 1;
+
+body{
+  padding-top: var(--navbar-height);
 }
