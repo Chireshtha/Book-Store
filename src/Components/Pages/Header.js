@@ -42,7 +42,7 @@ const Header = ({ size }) => {
         <Navbar.Collapse id='navbar-nav' clas
           sName='flex-row navbar-collapse'>
           <Nav className='d-flex justify-content-center align-items-center mx-5 my-4 pt-3 navbar-1'>
-            <Nav.Link as={NavLink} to='/' className='nav-link custom-nav-item text-decoration-none' onClick={handlemobileDropdownItemClick}> <span>Home</span> </Nav.Link>
+            <Nav.Link as={NavLink} to='/home' className='nav-link custom-nav-item text-decoration-none' onClick={handlemobileDropdownItemClick}> <span>Home</span> </Nav.Link>
             <Nav.Link as={NavLink} to='/BookDetails/:bookId' className='nav-link custom-nav-item text-decoration-none' onClick={handlemobileDropdownItemClick}> <span>Book Details</span> </Nav.Link>
             <Nav.Link as={NavLink} to='/ShoppingCart' className='nav-link custom-nav-item text-decoration-none' onClick={handlemobileDropdownItemClick}> <span>Order Details</span> </Nav.Link>
             <Nav.Link as={NavLink} to='/blog' className='nav-link custom-nav-item text-decoration-none' onClick={handlemobileDropdownItemClick}> <span>Blog</span> </Nav.Link>
