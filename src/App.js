@@ -92,7 +92,7 @@ function App() {
     <BrowserRouter>
       <Header size={cart.length} />
       <Routes>
-        <Route path='/Website-Frontend-Bookstore' element={<Home />} />
+        <Route path='/Book-Store' element={<Home />} />
         <Route path='/BookDetails/:bookId' element={<BookDetails  />} />
         <Route path='/ShoppingCart' element={<ShoppingCart />} />
         <Route path='/blog' element={<Blog />} />
